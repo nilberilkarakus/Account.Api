@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9E0BBBE7-F27C-4470-AEFB-3E737B7A62EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\WebApi\WebApi.csproj", "{66C38136-9DAD-4804-B4BC-2CAE95A85092}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{331581C6-FE45-4D1C-A40C-28EB597E16B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{06C901DF-54B0-490F-8E24-71E676C6C66E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{DEDF0285-5C80-4973-ABC2-8992A3813344}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6A5C2EA3-BB31-4DCA-98F6-B116C23F2DCA}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C9CB6946-1BCC-4B39-B4A3-A40D0DD042A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "test\Application.Tests\Application.Tests.csproj", "{95F1E2CA-62A4-4734-A960-D7C297FBB8C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66C38136-9DAD-4804-B4BC-2CAE95A85092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66C38136-9DAD-4804-B4BC-2CAE95A85092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66C38136-9DAD-4804-B4BC-2CAE95A85092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66C38136-9DAD-4804-B4BC-2CAE95A85092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{331581C6-FE45-4D1C-A40C-28EB597E16B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{331581C6-FE45-4D1C-A40C-28EB597E16B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{331581C6-FE45-4D1C-A40C-28EB597E16B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{331581C6-FE45-4D1C-A40C-28EB597E16B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06C901DF-54B0-490F-8E24-71E676C6C66E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06C901DF-54B0-490F-8E24-71E676C6C66E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06C901DF-54B0-490F-8E24-71E676C6C66E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06C901DF-54B0-490F-8E24-71E676C6C66E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEDF0285-5C80-4973-ABC2-8992A3813344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEDF0285-5C80-4973-ABC2-8992A3813344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEDF0285-5C80-4973-ABC2-8992A3813344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEDF0285-5C80-4973-ABC2-8992A3813344}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9CB6946-1BCC-4B39-B4A3-A40D0DD042A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CB6946-1BCC-4B39-B4A3-A40D0DD042A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CB6946-1BCC-4B39-B4A3-A40D0DD042A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9CB6946-1BCC-4B39-B4A3-A40D0DD042A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95F1E2CA-62A4-4734-A960-D7C297FBB8C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95F1E2CA-62A4-4734-A960-D7C297FBB8C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95F1E2CA-62A4-4734-A960-D7C297FBB8C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95F1E2CA-62A4-4734-A960-D7C297FBB8C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B954128-3E78-4666-87AB-E85A2F19394E}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{66C38136-9DAD-4804-B4BC-2CAE95A85092} = {9E0BBBE7-F27C-4470-AEFB-3E737B7A62EF}
+		{331581C6-FE45-4D1C-A40C-28EB597E16B7} = {9E0BBBE7-F27C-4470-AEFB-3E737B7A62EF}
+		{06C901DF-54B0-490F-8E24-71E676C6C66E} = {9E0BBBE7-F27C-4470-AEFB-3E737B7A62EF}
+		{DEDF0285-5C80-4973-ABC2-8992A3813344} = {9E0BBBE7-F27C-4470-AEFB-3E737B7A62EF}
+		{95F1E2CA-62A4-4734-A960-D7C297FBB8C0} = {6A5C2EA3-BB31-4DCA-98F6-B116C23F2DCA}
+	EndGlobalSection
+EndGlobal
