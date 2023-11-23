@@ -37,19 +37,14 @@ namespace Application.UseCases.GetCustomer
 
             var account = await _accountRepository.GetAccountById(customer.AccountId);
 
-            var accountDTO = _mapper.Map<AccountDTO>(account);
-
             var transactions = await _transactionRepository.GetTransactionsByAccountId(account.Id);
-
-            var transactionDTO = _mapper.Map<List<TransactionDTO>>(transactions);
-
 
             var getCustomerResponse = new GetCustomerResponse()
             {
                 Name = customer.Name,
                 Surname = customer.Surname,
-                Account = accountDTO,
-                Transactions = transactionDTO
+                Account = _mapper.Map<AccountDTO>(account),
+                Transactions = _mapper.Map<List<TransactionDTO>>(transactions)
 
             };
             
