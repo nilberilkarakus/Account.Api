@@ -1,13 +1,12 @@
-﻿
-trigger: 
-branches:
-  include: 
-	  - main
+﻿trigger: 
+  branches:
+    include: 
+      - main
 
 stages: 
 - stage: buildAccountApi
   jobs: 
-	  steps: 
+    steps: 
       - task: Docker@1
         displayName: "Build TestRunner"
         inputs:
@@ -43,8 +42,8 @@ stages:
           imageName: '$(imageName)'
 - stage: deployAccountApi
   dependsOn: buildAccountApi
-	jobs: 
-	  steps: 
+  jobs: 
+    steps: 
       - task: HelmInstaller@0
         displayName: "install helm"
         inputs:
