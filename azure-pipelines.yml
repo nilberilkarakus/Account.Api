@@ -9,7 +9,7 @@ stages:
   jobs: 
 	  steps: 
       - task: Docker@1
-			  displayName: "Build TestRunner"
+        displayName: "Build TestRunner"
         inputs:
           azureSubscriptionEndpoint: $(AzureSubscription)
           azureContainerRegistry: $(AzureContainerRegistry)
@@ -17,7 +17,7 @@ stages:
           dockerFile: $(System.DefaultWorkingDirectory)/$(dockerFileName)
           imageName: '$(imageName)-test'
       - task: Docker@1
-			  displayName: "Run Tests"
+        displayName: "Run Tests"
         inputs:
           azureSubscriptionEndpoint: $(AzureSubscription)
           azureContainerRegistry: $(AzureContainerRegistry)
@@ -27,14 +27,14 @@ stages:
           imageName: '$(imageName)-test'
           runInBackground: false
       - task: PublishTestResults@2
-			  displayName: "Publish Test Results"
+        displayName: "Publish Test Results"
         inputs:
           testResultsFormat: 'VSTest'
           testResultsFiles: 'TestResults/*.trx'
           searchFolder: '$(System.DefaultWorkingDirectory)'
           publishRunAttachments: true
       - task: Docker@1
-			  displayName: "Push Image"
+        displayName: "Push Image"
         inputs:
           azureSubscriptionEndpoint: $(AzureSubscription)
           azureContainerRegistry: $(AzureContainerRegistry)
