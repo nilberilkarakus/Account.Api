@@ -1,0 +1,9 @@
+name: account-api
+namespace: accountapi
+version: 1.0.0
+
+environment: dev
+domainName: accountapidemo.demo.com
+image:
+  repository: demoazurecontainerregistry.azurecr.io/account-api
+  tag: latest

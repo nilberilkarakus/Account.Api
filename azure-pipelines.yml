@@ -1,0 +1,65 @@
+﻿
+trigger: 
+branches:
+  include: 
+	  - main
+
+stages: 
+- stage: buildAccountApi
+  jobs: 
+	  steps: 
+      - task: Docker@1
+			  displayName: "Build TestRunner"
+        inputs:
+          azureSubscriptionEndpoint: $(AzureSubscription)
+          azureContainerRegistry: $(AzureContainerRegistry)
+          arguments: '--pull --target testrunner'
+          dockerFile: $(System.DefaultWorkingDirectory)/$(dockerFileName)
+          imageName: '$(imageName)-test'
+      - task: Docker@1
+			  displayName: "Run Tests"
+        inputs:
+          azureSubscriptionEndpoint: $(AzureSubscription)
+          azureContainerRegistry: $(AzureContainerRegistry)
+          command: 'run'
+          containerName: testrunner
+          volumes: '$(System.DefaultWorkingDirectory)/TestResults:/app/tests/TestResults'
+          imageName: '$(imageName)-test'
+          runInBackground: false
+      - task: PublishTestResults@2
+			  displayName: "Publish Test Results"
+        inputs:
+          testResultsFormat: 'VSTest'
+          testResultsFiles: 'TestResults/*.trx'
+          searchFolder: '$(System.DefaultWorkingDirectory)'
+          publishRunAttachments: true
+      - task: Docker@1
+			  displayName: "Push Image"
+        inputs:
+          azureSubscriptionEndpoint: $(AzureSubscription)
+          azureContainerRegistry: $(AzureContainerRegistry)
+          dockerFile: $(System.DefaultWorkingDirectory)/$(dockerFileName)
+          includeLatestTag: false
+          imageName: '$(imageName)'
+- stage: deployAccountApi
+  dependsOn: buildAccountApi
+	jobs: 
+	  steps: 
+      - task: HelmInstaller@0
+        displayName: "install helm"
+        inputs:
+          helmVersion: 'latest'
+      - task: HelmDeploy@0
+          displayName: "Helm upgrade"
+          inputs:
+            azureSubscriptionEndpoint: '$(AzureAksServiceConnection)'
+            azureResourceGroup: '$(ResourceGroup)'
+            kubernetesCluster: '$(ClusterName)'
+            command: upgrade
+            chartType: filepath
+            namespace: 'accountapi'
+            chartPath: '$(System.DefaultWorkingDirectory)/helm-chart'
+            releaseName: 'account-api'
+            install: true
+            waitForExecution: false
+      

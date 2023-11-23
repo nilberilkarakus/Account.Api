@@ -13,6 +13,15 @@ COPY . .
 WORKDIR "/src/src/WebApi"
 RUN dotnet build "WebApi.csproj" -c Release -o /app/build
 
+FROM build AS testrunner
+WORKDIR /test
+
+COPY Application.Tests/*.csproj .
+RUN dotnet restore Application.Tests.csproj
+
+COPY Application.Tests/. .
+ENTRYPOINT ["dotnet", "test", "--logger:trx"]
+
 FROM build AS publish
 RUN dotnet publish "WebApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
