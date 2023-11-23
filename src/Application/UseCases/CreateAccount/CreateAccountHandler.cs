@@ -28,7 +28,7 @@ namespace Application.UseCases.CreateAccount
 
 		public async Task<CreateAccountResponse> Handle(CreateAccountRequest createAccountRequest, CancellationToken cancellationToken)
 		{
-			var customer = _customerRepository.GetCustomerById(createAccountRequest.CustomerId);
+			var customer = await _customerRepository.GetCustomerById(createAccountRequest.CustomerId);
 
             if (customer == null)
                 throw new CustomerNotFoundException("Customer not found !");
@@ -51,10 +51,10 @@ namespace Application.UseCases.CreateAccount
 					Amount = createAccountRequest.InitialCredit
 				};
 
-				_transactionRepository.CreateTransaction(transaction);
+				await _transactionRepository.CreateTransaction(transaction);
 			}
 
-			var createdAccount = _accountRepository.CreateAccount(newAccount);
+			var createdAccount = await _accountRepository.CreateAccount(newAccount);
 
 			var createAccountResponse = _mapper.Map<CreateAccountResponse>(createdAccount);
 

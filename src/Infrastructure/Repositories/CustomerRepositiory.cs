@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Domain.Models;
 using Domain.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -33,11 +34,11 @@ namespace Infrastructure.Repositories
                 context.SaveChanges();
             }
         }
-        public Customer GetCustomerById(Guid CustomerId)
+        public async Task<Customer> GetCustomerById(Guid CustomerId)
         {
             using (var context = new AccountApiDbContext())
             {
-                var customer = context.Customers.Where(customer => customer.Id == CustomerId).FirstOrDefault();
+                var customer = await context.Customers.Where(customer => customer.Id == CustomerId).FirstOrDefaultAsync();
 
                 return customer;
             }

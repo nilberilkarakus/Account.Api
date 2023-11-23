@@ -5,7 +5,7 @@ namespace Domain.Interfaces
 {
 	public interface ICustomerRepository
 	{
-        public Customer GetCustomerById(Guid CustomerId);
+        public Task<Customer> GetCustomerById(Guid CustomerId);
 
     }
 }

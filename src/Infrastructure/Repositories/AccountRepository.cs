@@ -35,32 +35,32 @@ namespace Infrastructure.Repositories
                 context.SaveChanges();
             }
         }
-        public List<Account> GetAccounts()
+        public async Task<List<Account>> GetAccounts()
         {
             using (var context = new AccountApiDbContext())
             {
-                var list = context.Accounts
-                    .ToList();
+                var list = await context.Accounts
+                    .ToListAsync();
                 return list;
             }
         }
 
-        public Account GetAccountById(Guid accountId)
+        public async Task<Account> GetAccountById(Guid accountId)
         {
             using (var context = new AccountApiDbContext())
             {
-                var account = context.Accounts.Where(account => account.Id == accountId).FirstOrDefault();
+                var account = await context.Accounts.Where(account => account.Id == accountId).FirstOrDefaultAsync();
                 return account;
             }
         }
 
 
-        public Account CreateAccount(Account account)
+        public async Task<Account> CreateAccount(Account account)
         {
             using (var context = new AccountApiDbContext())
             {
                 context.Accounts.Add(account);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return account;
             }
         }

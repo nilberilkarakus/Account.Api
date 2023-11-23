@@ -30,16 +30,16 @@ namespace Application.UseCases.GetCustomer
 
         public async Task<GetCustomerResponse> Handle(GetCustomerRequest getCustomerRequest, CancellationToken cancellationToken)
         {
-            var customer = _customerRepository.GetCustomerById(getCustomerRequest.CustomerId);
+            var customer = await _customerRepository.GetCustomerById(getCustomerRequest.CustomerId);
 
             if (customer == null)
-                throw new CustomerNotFoundException("Customer not found !");
+                throw new CustomerNotFoundException("Customer not found for this account !");
 
-            var account = _accountRepository.GetAccountById(customer.AccountId);
+            var account = await _accountRepository.GetAccountById(customer.AccountId);
 
             var accountDTO = _mapper.Map<AccountDTO>(account);
 
-            var transactions = _transactionRepository.GetTransactionsByAccountId(account.Id);
+            var transactions = await _transactionRepository.GetTransactionsByAccountId(account.Id);
 
             var transactionDTO = _mapper.Map<List<TransactionDTO>>(transactions);
 

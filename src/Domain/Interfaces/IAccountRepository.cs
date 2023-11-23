@@ -5,11 +5,11 @@ namespace Domain.Interfaces
 {
 	public interface IAccountRepository
 	{
-        public List<Account> GetAccounts();
+        public Task<List<Account>> GetAccounts();
 
-        public Account CreateAccount(Account account);
+        public Task<Account> CreateAccount(Account account);
 
-        public Account GetAccountById(Guid accountId);
+        public Task<Account> GetAccountById(Guid accountId);
 
 
     }

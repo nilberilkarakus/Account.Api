@@ -32,13 +32,13 @@ namespace Application.UseCases.GetAccountTransactions
 
         public async Task<List<GetAccountTransactionsResponse>> Handle(GetAccountTransactionsRequest getAccountTransactionsRequest, CancellationToken cancellationToken)
         {
-            var account = _accountRepository.GetAccountById(getAccountTransactionsRequest.AccountId);
+            var account = await _accountRepository.GetAccountById(getAccountTransactionsRequest.AccountId);
 
             if (account == null)
                 throw new AccountNotFoundException("Account not found");
 
 
-            var transactions = _transactionRepository.GetTransactionsByAccountId(getAccountTransactionsRequest.AccountId);
+            var transactions = await _transactionRepository.GetTransactionsByAccountId(getAccountTransactionsRequest.AccountId);
 
             if (transactions == null || transactions.Count == 0)
                 throw new TransactionNotFoundException($"Transaction is not found for given AccountId {getAccountTransactionsRequest.AccountId}");

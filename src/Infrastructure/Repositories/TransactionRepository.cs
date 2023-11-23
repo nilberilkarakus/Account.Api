@@ -1,6 +1,7 @@
 ﻿using System;
 using Domain.Interfaces;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -31,22 +32,22 @@ namespace Infrastructure.Repositories
                 context.SaveChanges();
             }
         }
-        public List<Transaction> GetTransactionsByAccountId(Guid AccountId)
+        public async Task<List<Transaction>> GetTransactionsByAccountId(Guid AccountId)
         {
             using (var context = new AccountApiDbContext())
             {
-                var list = context.Transactions.Where(transaction => transaction.AccountId == AccountId)
-                    .ToList();
+                var list = await context.Transactions.Where(transaction => transaction.AccountId == AccountId)
+                    .ToListAsync();
                 return list;
             }
         }
 
-        public Transaction CreateTransaction(Transaction transaction)
+        public async Task<Transaction> CreateTransaction(Transaction transaction)
         {
             using (var context = new AccountApiDbContext())
             {
                 context.Transactions.Add(transaction);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return transaction;
             }
         }
