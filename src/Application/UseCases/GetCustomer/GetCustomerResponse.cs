@@ -1,16 +1,18 @@
 ﻿using System;
+using Domain.DTOs;
 using Domain.Models;
 
 namespace Application.UseCases.GetCustomer
 {
 	public class GetCustomerResponse
 	{
-       public string FirstName { get; set; }
+       public string Name { get; set; }
 
-	   public string LastName { get; set; }
+	   public string Surname { get; set; }
 
-	   public Account Account { get; set; }
+	   public AccountDTO Account { get; set; }
 
+	   public List<TransactionDTO> Transactions { get; set; }
 
 	}
 }

@@ -20,33 +20,16 @@ namespace Infrastructure.Repositories
                     Id = new Guid("02fffc63-603c-40d6-bc64-451652cde192"),
                     CreatedDate = DateTime.UtcNow,
                     CustomerId = new Guid("93527517-56ee-4e7f-9777-794fb193138d"),
-                    Balance = 10000,
-                    Transactions = new List<Transaction>() {
-                    new Transaction
-                    {
-                    Id = new Guid("0f5c7afd-b4fa-49b5-83c4-6085c40704d6"),
-                    TransactionDate = DateTime.UtcNow,
-                    AccountId = new Guid("02fffc63-603c-40d6-bc64-451652cde192"),
-                    Amount = 100
-                    }
-                 },
+                    Balance = 10000
+
                 },
                 new Account
                 {
                     Id = new Guid("e976f964-aaa1-4e22-8f8c-d75bd355643a"),
                     CreatedDate = DateTime.UtcNow,
                     CustomerId = new Guid("0d031dc6-e26e-4ed7-8424-7c6314695150"),
-                    Balance = 200000,
-                    Transactions = new List<Transaction>(){
-                    new Transaction
-                    {
-                    Id = new Guid("4a8c019b-9c49-4cba-85d5-8a5275057a23"),
-                    TransactionDate = DateTime.UtcNow,
-                    AccountId = new Guid("e976f964-aaa1-4e22-8f8c-d75bd355643a"),
-                    Amount = 100
-                     }
+                    Balance = 100
                 }
-                },
                 };
                 context.Accounts.AddRange(accounts);
                 context.SaveChanges();

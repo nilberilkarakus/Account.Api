@@ -1,4 +1,6 @@
 ﻿using System;
+using AutoMapper;
+using Domain.DTOs;
 using Domain.Exceptions;
 using Domain.Interfaces;
 using MediatR;
@@ -13,12 +15,16 @@ namespace Application.UseCases.GetCustomer
 
         private readonly ICustomerRepository _customerRepository;
         private readonly IAccountRepository _accountRepository;
+        private readonly ITransactionRepository _transactionRepository;
+        private readonly IMapper _mapper;
 
-        public GetCustomerHandler(ILogger<GetCustomerHandler> logger, ICustomerRepository customerRepository, IAccountRepository accountRepository)
+        public GetCustomerHandler(ILogger<GetCustomerHandler> logger, ICustomerRepository customerRepository, IAccountRepository accountRepository,ITransactionRepository transactionRepository,IMapper mapper)
         {
             _logger = logger;
             _customerRepository = customerRepository;
             _accountRepository = accountRepository;
+            _transactionRepository = transactionRepository;
+            _mapper = mapper;
         }
 
 
@@ -31,14 +37,23 @@ namespace Application.UseCases.GetCustomer
 
             var account = _accountRepository.GetAccountById(customer.AccountId);
 
-            var response = new GetCustomerResponse()
-            {
-                FirstName = customer.Name,
-                LastName = customer.Surname,
-                Account = account
-            };
+            var accountDTO = _mapper.Map<AccountDTO>(account);
 
-            return response;
+            var transactions = _transactionRepository.GetTransactionsByAccountId(account.Id);
+
+            var transactionDTO = _mapper.Map<List<TransactionDTO>>(transactions);
+
+
+            var getCustomerResponse = new GetCustomerResponse()
+            {
+                Name = customer.Name,
+                Surname = customer.Surname,
+                Account = accountDTO,
+                Transactions = transactionDTO
+
+            };
+            
+            return getCustomerResponse;
 
         }
     }

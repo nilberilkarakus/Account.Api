@@ -34,6 +34,16 @@ namespace WebApi
                     ErrorMessage = "An error occurred while processing your request",
                     ErrorDescription = ex.Message
                 }));
+                config.Map<AccountNotFoundException>().ToStatusCode(StatusCodes.Status404NotFound).WithBody((ex, context) => JsonConvert.SerializeObject(new
+                {
+                    ErrorMessage = "An error occurred while processing your request",
+                    ErrorDescription = ex.Message
+                }));
+                config.Map<TransactionNotFoundException>().ToStatusCode(StatusCodes.Status404NotFound).WithBody((ex, context) => JsonConvert.SerializeObject(new
+                {
+                    ErrorMessage = "An error occurred while processing your request",
+                    ErrorDescription = ex.Message
+                }));
             });
         }
     }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 using Application.UseCases.CreateAccount;
 using Application.UseCases.GetCustomer;
+using Application.UseCases.GetAccountTransactions;
 
 namespace Application
 {
@@ -15,6 +16,7 @@ namespace Application
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             services.AddPipelineBehavior();
+            services.AddUseCaseResponseAutoMapper();
             services.AddValidations();
         }
 
@@ -27,7 +29,16 @@ namespace Application
         {
             services.AddValidatorsFromAssemblyContaining<CreateAccountValidator>();
             services.AddValidatorsFromAssemblyContaining<GetCustomerValidator>();
+            services.AddValidatorsFromAssemblyContaining<GetAccountTransactionsValidator>();
+        }
+
+        public static void AddUseCaseResponseAutoMapper(this IServiceCollection services)
+        {
+            services.AddAutoMapper(typeof(CreateAccountResponseProfile));
+            services.AddAutoMapper(typeof(GetAccountTransactionsResponseProfile));
+            services.AddAutoMapper(typeof(GetCustomerResponseProfile));
 
         }
+
     }
 }

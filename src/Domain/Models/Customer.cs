@@ -4,11 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Domain.Models
 {
 	public class Customer
-	{
-		public Customer()
-		{
-		}
-
+	{ 
         [Key]
 
         public Guid Id { get; set; }

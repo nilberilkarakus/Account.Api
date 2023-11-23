@@ -10,10 +10,12 @@
     <None Remove="Interfaces\" />
     <None Remove="Exceptions\" />
     <None Remove="Models\" />
+    <None Remove="DTOs\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Models\" />
+    <Folder Include="DTOs\" />
   </ItemGroup>
 </Project>

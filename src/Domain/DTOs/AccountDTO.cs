@@ -1,8 +1,7 @@
 ﻿using System;
-
-namespace Application.UseCases.CreateAccount
+namespace Domain.DTOs
 {
-	public class CreateAccountResponse
+	public class AccountDTO
 	{
         public Guid Id { get; set; }
 

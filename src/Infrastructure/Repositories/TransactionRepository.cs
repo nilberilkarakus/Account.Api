@@ -17,7 +17,7 @@ namespace Infrastructure.Repositories
                     Id = new Guid("0f5c7afd-b4fa-49b5-83c4-6085c40704d6"),
                     TransactionDate = DateTime.UtcNow,
                     AccountId = new Guid("02fffc63-603c-40d6-bc64-451652cde192"),
-                    Amount = 100
+                    Amount = 10000
                 },
                 new Transaction
                 {
@@ -31,11 +31,11 @@ namespace Infrastructure.Repositories
                 context.SaveChanges();
             }
         }
-        public List<Transaction> GetTransactions()
+        public List<Transaction> GetTransactionsByAccountId(Guid AccountId)
         {
             using (var context = new AccountApiDbContext())
             {
-                var list = context.Transactions
+                var list = context.Transactions.Where(transaction => transaction.AccountId == AccountId)
                     .ToList();
                 return list;
             }
